@@ -444,6 +444,7 @@
         <ul>
           <li><strong>ASME B31.3</strong> process piping costing, joint by joint</li>
           <li><strong>ASME Sec. VIII Div. 1</strong>, Pressure Vessel fabrication</li>
+          <li>Vessel head forming — torispherical, elliptical, or hemispherical — priced in-house by size and thickness, or as a subcontracted per-head cost, your choice per line</li>
           <li>Design pressure/temperature, corrosion allowance, NACE MR0175 sour service</li>
           <li>Hydrotest and pneumatic test hours, tracked per line</li>
           <li>Hardness testing (P-No 4/5 alloys, NACE MR0175) and Charpy impact testing (UG-84 MDMT) — in-house or subcontract</li>
@@ -456,19 +457,19 @@
           <li><strong>Welder efficiency</strong> — a configurable attended-time factor (real arc-on % of a paid hour) so welding hours reflect actual shop productivity, not catalog deposition rates</li>
           <li><strong>Joint prep</strong> — bevel/edge preparation time tracked separately from fit-up, so weld-prep labor isn't silently absorbed into the fit-up line</li>
           <li><strong>Purge gas</strong> — tracked per weld hour for root-purged joints, on top of shielding gas and filler wire consumables</li>
-          <li><strong>Weld Position</strong> — flat, horizontal, vertical, or overhead, each with its own productivity multiplier (overhead genuinely takes longer, not just harder)</li>
-          <li><strong>PWHT</strong> — furnace, local induction, or local resistance, with hold/ramp hours and thermocouple setup</li>
-          <li><strong>NDE</strong> — RT, UT, MT, PT, PMI, VT, VB — in-house time or subcontract cost, with a coverage % for random/spot examination instead of assuming every joint is tested</li>
+          <li><strong>Weld position, diameter, shop vs. field, and base material</strong> — flat, horizontal, vertical, or overhead; pipe size; where the arc actually strikes; and carbon steel vs. stainless vs. duplex — each carries its own productivity factor, so a 6" shop weld and a 24" field weld in duplex are never priced the same</li>
+          <li><strong>PWHT</strong> — furnace, local induction, or local resistance, with heating, hold, and cooling time tracked as their own stages, plus thermocouple setup</li>
+          <li><strong>NDE</strong> — RT, UT, MT, PT, PMI, VT, VB, combinable on a single joint (RT + MT on the same weld, for example) — in-house time or subcontract cost, with diameter, wall thickness, and shop-vs-field access each factored in, and a coverage % for random/spot examination instead of assuming every joint is tested</li>
           <li>Preheat/interpass temperature and filler metal classification (AWS A5.x)</li>
         </ul>
       </div>
       <div class="cap-group">
         <h3>Heat Exchangers &amp; Structural</h3>
         <ul>
-          <li><strong>TEMA</strong> Class B/C/R — tube-to-tubesheet joints, expanded or welded</li>
-          <li>Baffle and tie-rod bundle assembly, priced separately from shell fabrication</li>
+          <li><strong>TEMA</strong> Class B/C/R — tube-to-tubesheet joints, expanded or welded, with tube insertion tracked as its own step</li>
+          <li>Baffle fabrication (drilling the plate) priced apart from tie-rod bundle assembly (installing it) and from shell fabrication</li>
           <li>Expansion joint (bellows) labor premium — thin-wall material costs differently than shell plate</li>
-          <li><strong>AISC</strong> structural steel, bolt grade, and moment-connection labor premium</li>
+          <li><strong>AISC</strong> structural steel — bolt count and grade drive real install/torque time, beam coping is priced apart from straight cuts, and moment connections carry their own labor premium</li>
           <li>Welder ID, heat/lot number, MTR reference, and CRN/National Board tracking</li>
         </ul>
       </div>
@@ -500,7 +501,9 @@
           <li>Import from Autodesk Inventor, AutoCAD, AutoCAD Plant 3D, Cadworks, and other CAD BOM/Material List exports (CSV/Excel) — keyword-based column auto-detection with malformed-row protection, and remembers a corrected layout so a recurring client format is never mapped twice</li>
           <li>Standby connector for subscribers already on <strong>Autodesk Platform Services</strong> (BIM 360/ACC) — pull a model's properties directly once your own APS credentials are provided</li>
           <li>QuickBooks Online sync, PO generation, and job travelers</li>
-          <li>Business Intelligence dashboard — estimate vs. actual, realized margin, and suggested rate adjustments when a cost category runs consistently high or low across completed jobs</li>
+          <li><strong>Material Master</strong> — vendor, freight, and currency-converted pricing per grade, kept as a running price history instead of one static number, so a rate you set last quarter doesn't quietly stay in play this quarter</li>
+          <li>Labor rates that can vary by department or crew, not just one shop-wide number per trade</li>
+          <li>Business Intelligence dashboard — estimate vs. actual down to both dollars and hours per operation, job status tracked from quote through award, realized margin, and suggested rate adjustments when a cost category runs consistently high or low across completed jobs</li>
           <li><strong>Subcontractor Bid Comparison</strong> — invite multiple named vendor bids per subcontracted operation (NDE, PWHT, hardness testing, galvanizing, outsourced machining); the winning bid feeds the estimate directly instead of a flat shop-wide rate</li>
           <li>Free steel PPI market reference (FRED / U.S. Bureau of Labor Statistics), auto-refreshed in the background — a trend signal for when it's time to revisit your own material rates, never applied automatically</li>
           <li>Rate profiles taggable by region (e.g. separate Alberta/Texas rate sets), with a flagged warning when a profile hasn't been touched in 60+ days — the same "flag stale data" discipline serious commercial cost databases like RSMeans build their update cadence around</li>
