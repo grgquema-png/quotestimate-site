@@ -475,7 +475,7 @@
         <h3>Welding &amp; Heat Treatment</h3>
         <ul>
           <li>Weld process, size, and joint count drive labor and consumables</li>
-          <li><strong>Welder efficiency</strong> — a configurable attended-time factor (real arc-on % of a paid hour) so welding hours reflect actual shop productivity, not catalog deposition rates</li>
+          <li><strong>Welder efficiency</strong> — a configurable efficiency factor so welding hours reflect actual shop productivity, not catalog rates</li>
           <li><strong>Joint prep</strong> — bevel/edge preparation time tracked separately from fit-up, so weld-prep labor isn't silently absorbed into the fit-up line</li>
           <li><strong>Purge gas</strong> — tracked per weld hour for root-purged joints, on top of shielding gas and filler wire consumables</li>
           <li><strong>Weld position, diameter, shop vs. field, and base material</strong> — flat, horizontal, vertical, or overhead; pipe size; where the arc actually strikes; and carbon steel vs. stainless vs. duplex — each carries its own productivity factor, so a 6" shop weld and a 24" field weld in duplex are never priced the same</li>
@@ -509,7 +509,7 @@
       <div class="cap-group">
         <h3>Sheet Metal &amp; Finishing</h3>
         <ul>
-          <li>Press-brake <strong>forming</strong> with bend-deduction and K-factor flat-pattern calculation</li>
+          <li>Press-brake <strong>forming</strong> with accurate flat-pattern calculation</li>
           <li>Pipe bending and polishing, priced per operation</li>
           <li>Coating — standard, epoxy, or marine-grade — and cleaning — degrease, pickle/passivate, or sandblast</li>
           <li>Galvanizing and dimensional/QC inspection, tracked as their own line items</li>
@@ -527,7 +527,7 @@
           <li>Business Intelligence dashboard — estimate vs. actual down to both dollars and hours per operation, job status tracked from quote through award, realized margin, and suggested rate adjustments when a cost category runs consistently high or low across completed jobs</li>
           <li><strong>Subcontractor Bid Comparison</strong> — invite multiple named vendor bids per subcontracted operation (NDE, PWHT, hardness testing, galvanizing, outsourced machining); the winning bid feeds the estimate directly instead of a flat shop-wide rate</li>
           <li>Free steel PPI market reference (FRED / U.S. Bureau of Labor Statistics), auto-refreshed in the background — a trend signal for when it's time to revisit your own material rates, never applied automatically</li>
-          <li>Rate profiles taggable by region (e.g. separate Alberta/Texas rate sets), with a flagged warning when a profile hasn't been touched in 60+ days — the same "flag stale data" discipline serious commercial cost databases like RSMeans build their update cadence around</li>
+          <li>Rate profiles taggable by region (e.g. separate Alberta/Texas rate sets), with a flagged warning when a profile hasn't been updated recently — the same "flag stale data" discipline serious commercial cost databases like RSMeans build their update cadence around</li>
           <li>Local activity log — who saved, deleted, or bulk-applied what and when, for shops where more than one person shares the same installation</li>
           <li>Cloud Sync presence notification — see who else recently worked on a shared project, and get warned before overwriting a teammate's newer save</li>
         </ul>
@@ -630,7 +630,8 @@
     <div class="sec-label" style="color:var(--bronze-400);">Pricing</div>
     <h2 class="sec-h">One license. No per-seat surprises.</h2>
     <p class="sec-sub">Subscribe monthly or save with annual billing. Cancel anytime — no annual contract to break.</p>
-    <div class="trial-flag">Free download — no obligation. Full access for 30 days. No sales call required.</div>
+    <div class="trial-flag">Free download — no obligation. Full access for 30 days. No sales call required.</p>
+      <p class="sec-sub" style="margin-top:12px;font-style:italic;">One missed operation on a fixed-price bid — a forgotten PWHT cycle, an underestimated x-ray scope — can cost you thousands.<br>Quotestimate is $129/month. One accurate bid pays for years of it.<br>Try it free for 30 days on your next real quote. Compare the numbers yourself.</p></div>
 
     <div class="plans">
       <div class="plan featured">
@@ -666,6 +667,8 @@
     <div class="sec-label">Company</div>
     <h2 class="sec-h">Who to reach</h2>
     <p class="sec-sub">Quotestimate is a fabrication cost-estimating tool built around real code-driven shop work — ASME B31.3 piping, Sec. VIII pressure vessels, TEMA exchangers, and AISC structural steel — not a generic quoting app repurposed for the trade. Every rate category on this site reflects an actual step in a fabrication job, priced the way a shop estimator would price it.</p>
+    <p class="sec-sub" style="margin-top:12px;"><strong>Built by the trade, not sold into it.</strong> Quotestimate wasn&apos;t built by a software company selling into fabrication. It was built by someone with 20 years in design and fabrication — who knows the materials, the welding procedures, the x-ray and NDE requirements, and everything else that goes into a real shop job. He built the tool he needed for his own bids: one that prices the way a shop actually works, operation by operation, not weight times a rate. When it started winning work, it became Quotestimate.</p>
+    <p</p>
     <div class="about-grid">
       <div class="about-copy">
         <p>Questions about a quote, a feature, or a bug in your trial — reach out directly using the contact below. We read every message ourselves; there's no ticket queue to sit in.</p>
