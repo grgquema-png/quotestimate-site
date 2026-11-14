@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>Quotestimate vs Other Estimating Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eceff1; --bg2:#e2e6e9; --panel:#ffffff; --panel2:#f5f7f8;
+  --ink:#14181c; --ink2:#3c454e; --muted:#68727c;
+  --line:#cfd6db; --line2:#dde2e6;
+  --accent:#c2410c; --accent-soft:#fdeee6;
+  --steel:#1f4e5f; --steel-soft:#e3eef1;
+  --ok:#166534; --ok-soft:#e6f2e8;
+  --no:#9a3412; --no-soft:#fbece4;
+  --warn:#8a5a00; --warn-soft:#faf0d3;
+  --radius:10px;
+  --font-d:"Archivo",system-ui,sans-serif;
+  --font-b:"Source Serif 4",Georgia,serif;
+  --font-m:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#101417; --bg2:#0c0f11; --panel:#1a1f24; --panel2:#20262c;
+    --ink:#eef2f4; --ink2:#c3ccd2; --muted:#8d99a2;
+    --line:#333d44; --line2:#2a3238;
+    --accent:#f0824a; --accent-soft:#3a2317;
+    --steel:#7fc3d6; --steel-soft:#17303a;
+    --ok:#7fd79a; --ok-soft:#16301d;
+    --no:#f2a582; --no-soft:#382016;
+    --warn:#e8c877; --warn-soft:#332a10;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:16.5px;line-height:1.6}
+a{color:var(--steel);text-underline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px 72px}
+
+/* ---------- header ---------- */
+header{padding:44px 0 8px}
+.kicker{font-family:var(--font-m);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-family:var(--font-d);font-weight:900;font-size:clamp(30px,5.4vw,52px);line-height:1.04;letter-spacing:-.02em;margin:12px 0 14px;max-width:16ch}
+.lede{font-size:clamp(17px,2.2vw,20px);color:var(--ink2);max-width:68ch;margin:0}
+.lede strong{color:var(--ink)}
+.meta{font-family:var(--font-m);font-size:12.5px;color:var(--muted);margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 18px}
+
+/* ---------- verdict strip ---------- */
+.verdict{margin:30px 0 8px;background:var(--ink);color:#fff;border-radius:14px;padding:26px 26px 22px;display:grid;grid-template-columns:1.5fr 1fr;gap:26px}
+@media (prefers-color-scheme:dark){.verdict{background:#050708;border:1px solid var(--line)}}
+.verdict h2{font-family:var(--font-d);font-size:21px;font-weight:800;margin:0 0 8px;line-height:1.25}
+.verdict p{margin:0;color:#d7dde1;font-size:15.5px}
+.verdict .num{font-family:var(--font-d);font-weight:900;font-size:56px;line-height:1;color:var(--accent)}
+@media (prefers-color-scheme:dark){.verdict .num{color:#f0824a}}
+.verdict .cap{font-family:var(--font-m);font-size:12px;color:#aeb8be;margin-top:8px;line-height:1.5}
+@media (max-width:720px){.verdict{grid-template-columns:1fr}}
+
+/* ---------- sections ---------- */
+section{margin-top:52px}
+.sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:20px}
+.sec-head .n{font-family:var(--font-m);font-size:13px;color:var(--accent);font-weight:600}
+.sec-head h2{font-family:var(--font-d);font-size:clamp(22px,3.4vw,30px);font-weight:800;letter-spacing:-.01em;margin:0}
+.sec-sub{color:var(--ink2);max-width:72ch;margin:-6px 0 22px}
+
+/* ---------- scope matrix ---------- */
+.matrix{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media (max-width:720px){.matrix{grid-template-columns:repeat(2,1fr)}}
+.scope{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.scope .code{font-family:var(--font-m);font-size:11.5px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.scope h3{font-family:var(--font-d);font-size:16.5px;margin:5px 0 6px;font-weight:800;line-height:1.25}
+.scope p{margin:0;font-size:13.5px;color:var(--ink2);line-height:1.5}
+.scope .only{margin-top:10px;font-family:var(--font-m);font-size:11.5px;font-weight:600;color:var(--ok);background:var(--ok-soft);display:inline-block;padding:3px 8px;border-radius:99px}
+
+/* ---------- table ---------- */
+.tbl-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead th{font-family:var(--font-d);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;text-align:left;background:var(--panel2);color:var(--ink2);padding:11px 12px;border-bottom:2px solid var(--line);vertical-align:bottom}
+tbody td{padding:13px 12px;border-bottom:1px solid var(--line2);vertical-align:top;line-height:1.5}
+tbody tr:last-child td{border-bottom:none}
+td.tool{font-family:var(--font-d);font-weight:800;font-size:15px;white-space:nowrap}
+td.tool small{display:block;font-family:var(--font-m);font-weight:400;font-size:11px;color:var(--muted);white-space:normal;margin-top:2px}
+tr.hero-row td{background:var(--accent-soft)}
+tr.dead td{opacity:.62}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.dot.y{background:var(--ok)} .dot.n{background:#b6bfc6} .dot.p{background:var(--warn)}
+@media (prefers-color-scheme:dark){.dot.n{background:#4a555e}}
+.tag{font-family:var(--font-m);font-size:11px;font-weight:600;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.tag.pub{background:var(--ok-soft);color:var(--ok)}
+.tag.req{background:var(--warn-soft);color:var(--warn)}
+.tag.tp{background:var(--steel-soft);color:var(--steel)}
+.price{font-family:var(--font-m);font-size:13px;font-weight:600}
+.note{font-size:12.5px;color:var(--muted)}
+@media (max-width:860px){
+  table,thead,tbody,tr,td{display:block;width:100%}
+  thead{display:none}
+  tbody td{border-bottom:none;padding:6px 16px}
+  tbody tr{padding:14px 0;border-bottom:1px solid var(--line)}
+  tbody tr:last-child{border-bottom:none}
+  td.tool{padding-bottom:2px}
+  td::before{content:attr(data-l);display:block;font-family:var(--font-d);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  td.tool::before{content:none}
+}
+
+/* ---------- competitor cards ---------- */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:820px){.cards{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 20px 16px}
+.card.q{border:2px solid var(--accent)}
+.card h3{font-family:var(--font-d);font-size:18px;font-weight:800;margin:0;line-height:1.25}
+.card .vendor{font-family:var(--font-m);font-size:11.5px;color:var(--muted);margin-top:3px}
+.card p{font-size:14.5px;color:var(--ink2);margin:10px 0 0}
+.card p b,.card li b{color:var(--ink)}
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.pill{font-family:var(--font-m);font-size:11px;padding:3px 8px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.pill.on{border-color:transparent;background:var(--ok-soft);color:var(--ok);font-weight:600}
+.pill.off{opacity:.55;text-decoration:line-through}
+.card ul{margin:12px 0 4px;padding-left:18px;font-size:14px;color:var(--ink2)}
+.card li{margin:4px 0}
+.card .vs{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:14px}
+.card .vs .lab{font-family:var(--font-d);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.status{font-family:var(--font-m);font-size:11px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--no-soft);color:var(--no)}
+
+/* ---------- stronger / weaker ---------- */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:820px){.vs-grid{grid-template-columns:1fr}}
+.vs-box{border-radius:12px;padding:22px;border:1px solid var(--line);background:var(--panel)}
+.vs-box.win{border-top:5px solid var(--ok)}
+.vs-box.lose{border-top:5px solid var(--no)}
+.vs-box h3{font-family:var(--font-d);font-size:18px;margin:0 0 6px;font-weight:800}
+.vs-box ol{margin:10px 0 0;padding-left:20px}
+.vs-box li{margin:10px 0;font-size:14.5px;color:var(--ink2)}
+.vs-box li b{color:var(--ink);font-family:var(--font-d);font-size:14.5px}
+
+/* ---------- open questions / sources ---------- */
+.open{background:var(--warn-soft);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.open h3{font-family:var(--font-d);margin:0 0 8px;font-size:16px}
+.open ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink2)}
+.open li{margin:5px 0}
+.sources{font-size:13.5px;color:var(--ink2)}
+.sources li{margin:6px 0;overflow-wrap:anywhere}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-family:var(--font-m);font-size:12px;color:var(--muted);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Comparison · Fabrication Cost Estimating</div>
+  <h1>Quotestimate vs. other estimating software</h1>
+  <p class="lede">Quotestimate compared against <strong>11 other cost &amp; estimate software tools</strong> in the same field — piping, pressure vessels, heat exchangers, structural steel, and storage tanks — to show where they differ: <strong>what scope they cover, how they price, and how much they cost.</strong></p>
+  <div class="meta">
+    <span>Based on public vendor pages · verified 2026-11-14</span>
+    <span>Competitor prices gathered 2026-10-18 and labelled as reported</span>
+    <span>Prices not published by the vendor = “quote on request”</span>
+  </div>
+</header>
+
+<div class="verdict">
+  <div>
+    <h2>The biggest difference: scope</h2>
+    <p>Quotestimate is the <b>only</b> tool on this list that covers all five scopes in <b>one estimate, one engine</b>. Every competitor covers only one or two scopes — so if you are bidding a mixed package (pipe rack + vessel + exchanger + tank), you would need four tools and four reconciliations with them.</p>
+  </div>
+  <div>
+    <div class="num">5 / 5</div>
+    <div class="cap">Scopes covered by Quotestimate.<br>Closest competitors: 2 / 5 (COMPRESS + COSTER, design-side).</div>
+  </div>
+</div>
+
+<!-- ============ 1. SCOPE ============ -->
+<section id="scope">
+  <div class="sec-head"><span class="n">01</span><h2>Quotestimate's five scopes</h2></div>
+  <p class="sec-sub">This is the “area of fields” we looked for a match against. For each one, it is marked whether another tool on the list also covers it as fabrication estimating.</p>
+  <div class="matrix">
+    <div class="scope"><div class="code">ASME B31.3</div><h3>Process Piping</h3><p>Joint-by-joint costing — weld process, size, and joint count drive labour and consumables.</p><span class="only">Counterpart: MEP piping tools only</span></div>
+    <div class="scope"><div class="code">ASME Sec. VIII Div. 1</div><h3>Pressure Vessels</h3><p>Includes PWHT, NDE, hydrotest, Charpy impact and hardness testing, NACE sour service.</p><span class="only">Counterpart: COMPRESS (design, not costing)</span></div>
+    <div class="scope"><div class="code">TEMA Class B / C / R</div><h3>Heat Exchangers</h3><p>Tube joints, baffle / tie-rod assembly, expansion joint — costed per operation.</p><span class="only">Counterpart: COMPRESS (design-side)</span></div>
+    <div class="scope"><div class="code">AISC</div><h3>Structural Steel — Shop to Site</h3><p>Fabrication + erection (self-erect or subcontract), decking, anchor bolts, fireproofing, misc metals, detailing.</p><span class="only">Counterpart: Tekla / STRUMIS (structural only)</span></div>
+    <div class="scope"><div class="code">API 650</div><h3>Oil Storage Tanks</h3><p>Built-in Tank Calculator — shell, floor, roof (fixed or floating), accessories and testing, from basic dimensions only.</p><span class="only">No counterpart on this list</span></div>
+  </div>
+  <p class="note" style="margin-top:14px">Beyond the five: API 16A/16AR well-control equipment, SMACNA duct (separate product line), machining, and sheet metal. Source: <a href="https://www.quotestimate.com/">quotestimate.com</a></p>
+</section>
+
+<!-- ============ 2. TABLE ============ -->
+<section id="table">
+  <div class="sec-head"><span class="n">02</span><h2>Full comparison table</h2></div>
+  <p class="sec-sub">● = covered / costed &nbsp;·&nbsp; ● (yellow) = partial or design-side only &nbsp;·&nbsp; ○ = not evidenced in vendor documentation. “Not evidenced” is used, not “none” — it means it simply did not appear in the public docs found.</p>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr>
+      <th style="width:17%">Software</th><th style="width:19%">Scopes (of the five)</th><th style="width:20%">How they price</th>
+      <th style="width:15%">Erection · Decking · Fireproofing · Misc Metals · Detailing</th><th style="width:13%">NDE · PWHT · Hydrotest</th><th style="width:16%">Price</th>
+    </tr></thead>
+    <tbody>
+      <tr class="hero-row">
+        <td class="tool">Quotestimate<small>Stratoil Analytix · Edmonton</small></td>
+        <td data-l="Scopes"><span class="dot y"></span>All five — piping, vessels, exchangers, structural, tanks</td>
+        <td data-l="Pricing method"><b>Operation-by-operation</b> time × rate — cutting, forming, fit-up, welding, machining priced separately</td>
+        <td data-l="Shop to site"><span class="dot y"></span>All costed in one estimate</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot y"></span>All, per joint / per line</td>
+        <td data-l="Price"><span class="price">$129/mo annual · $159/mo monthly</span><br><span class="tag pub">Vendor-published</span> <span class="note">Per-seat licences that can link into one Company Group · 30-day trial</span></td>
+      </tr>
+      <tr>
+        <td class="tool">Tekla PowerFab<small>Trimble · formerly Tekla EPM / FabSuite</small></td>
+        <td data-l="Scopes"><span class="dot p"></span>Structural only</td>
+        <td data-l="Pricing method">Operation labour standards + material pricing database; model-based from Tekla Structures / IFC</td>
+        <td data-l="Shop to site"><span class="dot p"></span>Paint and shop/field bolts yes; erection, decking, fireproofing not evidenced; detailing is in the separate Tekla Structures</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot n"></span>Not evidenced</td>
+        <td data-l="Price"><span class="tag req">Quote on request</span><br><span class="note">Third-party: ~$8,000 starting</span></td>
+      </tr>
+      <tr>
+        <td class="tool">STRUMIS<small>Structural steel MRP/ERP</small></td>
+        <td data-l="Scopes"><span class="dot p"></span>Structural; mentions plate work / pipe fabrication</td>
+        <td data-l="Pricing method">Parametric labour + connection costing + material database; MRP auto-calc of materials, coatings, waste</td>
+        <td data-l="Shop to site"><span class="dot p"></span>Coatings/treatments yes; erection, decking, fireproofing not evidenced; detailing is imported, not created</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot n"></span>Not evidenced</td>
+        <td data-l="Price"><span class="tag req">Quote on request</span><br><span class="note">Competitor-sourced: ~€9,000 perpetual + 15–20%/yr maintenance</span></td>
+      </tr>
+      <tr class="dead">
+        <td class="tool">FabTrol <span class="status">LEGACY</span><small>AVEVA · formerly FabTrol Systems</small></td>
+        <td data-l="Scopes"><span class="dot p"></span>Structural only</td>
+        <td data-l="Pricing method">Per-item material + labour from company-standard data tables</td>
+        <td data-l="Shop to site"><span class="dot p"></span>Erection done outside, in Excel (per the ASEE paper); detailing imported; decking/fireproofing not evidenced</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot n"></span>Not evidenced</td>
+        <td data-l="Price"><span class="tag req">No longer published</span><br><span class="note">Reported as no longer sold or supported (competitor claim)</span></td>
+      </tr>
+      <tr>
+        <td class="tool">COMPRESS + COSTER<small>Codeware · ASME design</small></td>
+        <td data-l="Scopes"><span class="dot p"></span>Vessels + exchangers — but <b>design</b>-side</td>
+        <td data-l="Pricing method"><b>$/lb per component</b> — shell $17.00/lb, shell rolling $3.00/lb, purchased heads $1,200/head, nozzles $100/lb (from the COSTER demo)</td>
+        <td data-l="Shop to site"><span class="dot n"></span>None; drawings via Inventor, Sec. IX weld docs via Shopfloor</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot p"></span>Hydrotest = design stress calculation, not costed; PWHT/NDE costing not evidenced</td>
+        <td data-l="Price"><span class="tag req">Quote on request</span><br><span class="note">COSTER Excel add-in included free with COMPRESS</span></td>
+      </tr>
+      <tr>
+        <td class="tool">QuoteSoft Pipe / Duct<small>Quote Software</small></td>
+        <td data-l="Scopes"><span class="dot p"></span>Commercial piping and HVAC duct (MEP) only</td>
+        <td data-l="Pricing method">Item database + labour-hour calculation; takeoff from PDF/plans</td>
+        <td data-l="Shop to site"><span class="dot n"></span>None</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot n"></span>None</td>
+        <td data-l="Price"><span class="tag req">Quote on request</span></td>
+      </tr>
+      <tr>
+        <td class="tool">Trimble AutoBid Mechanical<small>Trimble · MEP</small></td>
+        <td data-l="Scopes"><span class="dot p"></span>MEP piping / plumbing + sheet metal only</td>
+        <td data-l="Pricing method">Item database (100k+ items) + labour</td>
+        <td data-l="Shop to site"><span class="dot n"></span>None</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot n"></span>None</td>
+        <td data-l="Price"><span class="tag tp">Third-party listing</span><br><span class="price">~$225/mo starting</span></td>
+      </tr>
+      <tr>
+        <td class="tool">FastPIPE / FastDUCT<small>FastEST</small></td>
+        <td data-l="Scopes"><span class="dot p"></span>Commercial piping + HVAC duct only</td>
+        <td data-l="Pricing method">Item database + labour, takeoff + Excel export; estimating-only</td>
+        <td data-l="Shop to site"><span class="dot n"></span>None</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot n"></span>None</td>
+        <td data-l="Price"><span class="tag tp">Third-party listings</span><br><span class="price">$4,995 one-time or ~$225–$250/mo lease</span> <span class="note">(first app; listings differ)</span></td>
+      </tr>
+      <tr>
+        <td class="tool">Autodesk Fabrication ESTmep<small>Autodesk · MEP</small></td>
+        <td data-l="Scopes"><span class="dot p"></span>MEP building systems only (duct, piping, plumbing, electrical)</td>
+        <td data-l="Pricing method">Item database + labour factors; manufacturer content + Harrison prices; shared ITM database with CADmep / CAMduct</td>
+        <td data-l="Shop to site"><span class="dot n"></span>None (detailing is in CADmep; CAMduct drives CNC)</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot n"></span>None</td>
+        <td data-l="Price"><span class="tag req">Quote on request</span> <span class="note">Subscription, per-user</span></td>
+      </tr>
+      <tr>
+        <td class="tool">ProEst<small>General construction</small></td>
+        <td data-l="Scopes"><span class="dot n"></span>None of the five — general construction (GC, specialty, civil)</td>
+        <td data-l="Pricing method">Cost-database assemblies (“recipes”) + digital takeoff</td>
+        <td data-l="Shop to site"><span class="dot n"></span>None as fabrication operations</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot n"></span>None</td>
+        <td data-l="Price"><span class="tag tp">Third-party-reported</span><br><span class="price">from $5,000/yr</span> <span class="note">unlimited-user; most are custom-quoted, enterprise $15,000–$40,000+/yr per third-party benchmarks</span></td>
+      </tr>
+      <tr>
+        <td class="tool">CostOS<small>Nomitech · capital projects / EPC</small></td>
+        <td data-l="Scopes"><span class="dot n"></span>None as fabrication — capital-project estimating (construction, oil &amp; gas, nuclear, mining, EPC)</td>
+        <td data-l="Pricing method">Parametric engine + 2D/3D BIM and GIS takeoff + cost databases / assemblies</td>
+        <td data-l="Shop to site"><span class="dot n"></span>None as fabrication operations</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot n"></span>None</td>
+        <td data-l="Price"><span class="tag req">Vendor: custom pricing</span><br><span class="note">Third-party listing: $2,800/user one-time — sources conflict, not reconciled</span></td>
+      </tr>
+      <tr class="dead">
+        <td class="tool">PipeFitter / Weld Estimator apps<small>Mobile / web calculators</small></td>
+        <td data-l="Scopes"><span class="dot n"></span>None — they are not job estimators</td>
+        <td data-l="Pricing method">Weld-metal weight × rate for <b>one joint</b>; layout geometry (offsets, takeouts, cut lengths)</td>
+        <td data-l="Shop to site"><span class="dot n"></span>None</td>
+        <td data-l="NDE / PWHT / Hydro"><span class="dot n"></span>None</td>
+        <td data-l="Price"><span class="price">Free – ~$2.99/mo / $19.99/yr</span> <span class="note">(Varyos Weld, “launching soon”)</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ 3. METHOD ============ -->
+<section id="method">
+  <div class="sec-head"><span class="n">03</span><h2>Difference #2: how they price</h2></div>
+  <p class="sec-sub">This is the second big divide. Every tool on the list uses one of three methods — and only one uses operation-by-operation.</p>
+  <div class="cards">
+    <div class="card q">
+      <h3>Operation-by-operation · time × rate</h3><div class="vendor">QUOTESTIMATE ONLY</div>
+      <p>Each BOM line is broken down into the operations the shop actually does: <b>cutting, forming, fit-up, welding, machining</b> — each priced separately. Weld process, size and joint count drive labour and consumables.</p>
+      <ul>
+        <li><b>Welder efficiency</b> (arc-on %) factor</li>
+        <li><b>Joint prep</b> separate from fit-up</li>
+        <li><b>Purge gas</b> per weld hour</li>
+        <li>Position / diameter / shop-vs-field / material productivity factors</li>
+      </ul>
+      <p>So two spools with the same weight but different joints come out with different prices — up to <b>3× difference</b> per the comparison.</p>
+    </div>
+    <div class="card">
+      <h3>Weight × rate · $/lb</h3><div class="vendor">COMPRESS + COSTER</div>
+      <p>The closest vessel rival uses this — exactly the method Quotestimate positions against: <i>“Most estimating tools multiply weight by a rate…”</i></p>
+      <ul>
+        <li>Shell — <b>$17.00/lb</b></li>
+        <li>Shell rolling — <b>$3.00/lb</b></li>
+        <li>Purchased heads — <b>$1,200/head</b></li>
+        <li>Nozzles — <b>$100/lb</b></li>
+      </ul>
+      <p class="note">From the official COSTER demo report. Components are priced, not shop operations.</p>
+    </div>
+    <div class="card">
+      <h3>Item database + labour hours</h3><div class="vendor">MEP AND GENERAL TOOLS</div>
+      <p>QuoteSoft, AutoBid Mechanical, ESTmep, FastPIPE/FastDUCT, ProEst, CostOS — quantity × cost database / assemblies, takeoff from PDF, BIM or GIS.</p>
+      <p>Strong on <b>content library</b> (manufacturer items, Harrison prices, 100k+ items), but no weld-process, PWHT or NDE costing — they were not built for code fabrication.</p>
+    </div>
+    <div class="card">
+      <h3>Labour standards / parametric tables</h3><div class="vendor">STRUCTURAL TOOLS</div>
+      <p>Tekla PowerFab: Labour Standards tables — hours by operation (Burn, Drill, Punch, Weld) by shape/dimension, plus a material pricing database. STRUMIS: parametric labour + connection costing. FabTrol: per-item material + labour from company-standard tables.</p>
+      <p>This is not flat $/lb — but it covers <b>structural shapes only</b>, and it is tied to their own ERP.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. PER TOOL ============ -->
+<section id="tools">
+  <div class="sec-head"><span class="n">04</span><h2>Each competitor, one by one</h2></div>
+  <p class="sec-sub">What they can do, and what they can do that <b>Quotestimate cannot</b>. That last part matters — it is where you see whether they are complements or true replacements.</p>
+  <div class="cards">
+
+    <div class="card q">
+      <h3>Quotestimate</h3><div class="vendor">STRATOIL ANALYTIX · QUOTESTIMATE.COM</div>
+      <div class="pills"><span class="pill on">Piping</span><span class="pill on">Vessels</span><span class="pill on">Exchangers</span><span class="pill on">Structural</span><span class="pill on">Tanks</span></div>
+      <ul>
+        <li><b>NDE</b> — RT, UT, MT, PT, PMI, VT, VB; can be combined per joint, in-house or subcontract, with coverage %</li>
+        <li><b>PWHT</b> — furnace / local induction / local resistance; heating + hold + cooling stages, thermocouple setup</li>
+        <li><b>Hydrotest and pneumatic test</b> hours per line; hardness testing (P-No 4/5, NACE MR0175), Charpy impact (UG-84 MDMT), NACE sour service</li>
+        <li><b>AACE 18R-97</b> Estimate Class 1–5 with class-tied contingency and a printed accuracy range</li>
+        <li>Structural: erection, decking, anchor bolts, fireproofing, stairs/platforms/railings, detailing as a costed line item</li>
+      </ul>
+      <p><b>BOM Import Checks (v1.0.8).</b> Material designations are checked as the BOM loads: a grade that does not exist, a gasket made of the wrong stuff, or a weight that is thousands of pounds off gets a warning before it reaches the estimate. The checks flag only — they never block a save. No competitor on this page evidences this check.</p>
+      <p><b>Beyond the checklist:</b> nesting/cut optimisation + drop inventory; CAD BOM import (Inventor, AutoCAD, Plant 3D, Cadworks, CSV/Excel); standby Autodesk Platform Services (BIM 360/ACC) connector — requires the customer's own APS credentials; QuickBooks Online sync; PO generation; job travellers; Material Master with vendor/freight/FX price history; labour rates by department/crew; BI dashboard (estimate vs. actual in $ and hours per operation, margin, suggested rate adjustments); Subcontractor Bid Comparison; free steel PPI (FRED/BLS) trend reference; region rate profiles with stale-data warnings; client quote with margin hidden; rework/scrap allowance; revision history with BOM snapshots.</p>
+      <div class="vs"><span class="lab">Price</span><br><span class="price">$129/mo billed annually ($1,548/yr) · $159/mo billed monthly</span> — per-seat licences that can link into one Company Group. Each licence is hardware-locked and transferable 2×/year. 30-day free trial. Runs locally, stored locally; if the subscription lapses, no new estimates or engine updates, but exports (PDF/Excel/job traveller) remain available.</div>
+    </div>
+
+    <div class="card">
+      <h3>Tekla PowerFab</h3><div class="vendor">TRIMBLE · FORMERLY TEKLA EPM / FABSUITE</div>
+      <div class="pills"><span class="pill off">Piping</span><span class="pill off">Vessels</span><span class="pill off">Exchangers</span><span class="pill on">Structural</span><span class="pill off">Tanks</span></div>
+      <p>Full fabrication ERP for structural steel, not just an estimator. Its estimating is model-based (Tekla Structures / IFC) or manual entry, with a supplier pricing database, and its labour codes carry shop bolts, field bolts, weld cost and weld weight.</p>
+      <div class="vs"><span class="lab">What it can do that Quotestimate cannot</span>
+        <ul>
+          <li><b>Production control at ERP depth</b> — capacity planning by department / shift / work area, plus shipping</li>
+          <li>Combining (BOM + waste optimisation / nesting), Purchasing, Project Management, Order Entry — as one integrated ERP suite</li>
+          <li>PowerFab Go — mobile / shop-floor paperless production</li>
+          <li>A centralised database shared across the whole company; deep BIM integration (Tekla Structures, IFC, Trimble Connect)</li>
+        </ul>
+      </div>
+      <div class="vs"><span class="lab">Price</span><br>Not published by the vendor — quote on request. Third-party listings: ~$8,000 starting (SoftwareFinder / Capterra); one NZ reseller: “From $8,940”, currency unstated. <b>Third-party-reported, not vendor-confirmed.</b></div>
+    </div>
+
+    <div class="card">
+      <h3>STRUMIS</h3><div class="vendor">STEEL FABRICATION MANAGEMENT</div>
+      <div class="pills"><span class="pill off">Piping*</span><span class="pill off">Vessels</span><span class="pill off">Exchangers</span><span class="pill on">Structural</span><span class="pill off">Tanks</span></div>
+      <p>End-to-end MRP/ERP. Its Estimating module: section data, connection details, labour costs from a comprehensive database, worldwide section catalogue, templates for fabrication types (stairs, portal frames…), standard inclusions (treatments, transport). *Mentions plate work / pipe fabrication as secondary coverage.</p>
+      <div class="vs"><span class="lab">What it can do that Quotestimate cannot</span>
+        <ul>
+          <li>Purchasing, inventory with <b>remnant tracking</b>, production control &amp; scheduling</li>
+          <li><b>Direct CNC machine control / G-code</b> (StruCNC CAM module) — Quotestimate does CNC costing + DXF export only; it does not send G-code to the machine</li>
+          <li>Barcode shop-floor tracking via mobile apps</li>
+          <li>Quality / traceability — EN 1090 / ISO, material certs, welder traceability</li>
+          <li>Estimated-vs-actual cost control; accounting integrations</li>
+        </ul>
+      </div>
+      <div class="vs"><span class="lab">Price</span><br>Not published by the vendor. EZIIL (a competitor) reported a perpetual per-licence price of ~€9,000 upfront for a ~10-user small/medium shop with core modules, plus ~15–20%/yr maintenance, with subscription models also appearing. <b>Competitor-sourced, not vendor-confirmed.</b></div>
+    </div>
+
+    <div class="card">
+      <h3>FabTrol <span class="status">LEGACY / EOL</span></h3><div class="vendor">AVEVA · ACQUIRED IN 2015</div>
+      <div class="pills"><span class="pill off">Piping</span><span class="pill off">Vessels</span><span class="pill off">Exchangers</span><span class="pill on">Structural</span><span class="pill off">Tanks</span></div>
+      <p>Structural steel fabrication management: nesting, purchasing, inventory, production management, shipping, drawing management / revision tracking, project management (RFIs, change orders).</p>
+      <p><b>Status is the biggest news:</b> acquired by AVEVA in 2015 ($6.5M, ~1,400 customers). EZIIL reports it is “no longer being sold or supported by AVEVA” — a competitor claim, but consistent with Trimble's “Making the transition from FabTrol to Tekla PowerFab” webinars. <b>Treat as legacy to migrate from, not a live alternative.</b></p>
+      <div class="vs"><span class="lab">Price</span><br>Not published; reported as no longer sold.</div>
+    </div>
+
+    <div class="card">
+      <h3>COMPRESS + COSTER</h3><div class="vendor">CODEWARE · CLOSEST ON VESSELS</div>
+      <div class="pills"><span class="pill off">Piping</span><span class="pill on">Vessels</span><span class="pill on">Exchangers</span><span class="pill off">Structural</span><span class="pill off">Tanks</span></div>
+      <p>COMPRESS does <b>ASME VIII Div. 1/2 design</b> — plus heat-exchanger design, Inventor drawings, and Shopfloor Sec. IX weld documents. COSTER is an Excel add-in included with COMPRESS; it imports the COMPRESS file and produces a customisable spreadsheet estimate.</p>
+      <div class="vs"><span class="lab">The difference</span><br>It <b>designs</b>; Quotestimate <b>costs</b>. They are not interchangeable: if you need code calculations, you still need COMPRESS or an equivalent. But for costing it uses $/lb per component — no PWHT / NDE / hydrotest costing evidenced.</div>
+      <div class="vs"><span class="lab">Price</span><br>COMPRESS not published — quote on request. COSTER included free (no extra charge).</div>
+    </div>
+
+    <div class="card">
+      <h3>QuoteSoft Pipe / Duct · Trimble AutoBid</h3><div class="vendor">MEP ESTIMATING</div>
+      <div class="pills"><span class="pill on">Piping (commercial)</span><span class="pill off">Vessels</span><span class="pill off">Exchangers</span><span class="pill off">Structural</span><span class="pill off">Tanks</span></div>
+      <p>QuoteSoft Pipe: commercial/industrial piping &amp; plumbing — pipe, fittings, valves, flanges, fixtures, equipment, with automatic pipe/fitting generation from takeoff. QuoteSoft Duct: HVAC ductwork (rectangular/round/oval, spiral, grills, dampers, accessories). Trimble AutoBid Mechanical sits in the same MEP territory.</p>
+      <p><b>This is not B31.3 code fabrication</b> — no weld-process / PWHT / NDE costing.</p>
+      <div class="vs"><span class="lab">Price</span><br>QuoteSoft: not published — “Contact QuoteSoft for current licence pricing”. AutoBid: subscription; SourceForge listing $225/month starting (third-party listing).</div>
+    </div>
+
+    <div class="card">
+      <h3>Autodesk Fabrication ESTmep · FastEST</h3><div class="vendor">MEP BUILDING SYSTEMS</div>
+      <div class="pills"><span class="pill on">Piping (MEP)</span><span class="pill off">Vessels</span><span class="pill off">Exchangers</span><span class="pill off">Structural</span><span class="pill off">Tanks</span></div>
+      <p><b>ESTmep:</b> MEP building systems estimating with manufacturer content + Harrison prices, and a shared ITM database with CADmep (detailing) and CAMduct (CNC). <b>FastPIPE / FastDUCT:</b> commercial plumbing/mechanical piping + HVAC duct, takeoff + material/labour + Excel export, estimating-only.</p>
+      <div class="vs"><span class="lab">What they can do that Quotestimate cannot</span><br>Deeper manufacturer / price content libraries for pure commercial HVAC, plumbing and duct work; CAMduct drives CNC machines.</div>
+      <div class="vs"><span class="lab">Price</span><br>ESTmep: subscription per-user, not published. FastEST: published in third-party listings — first application $4,995 one-time or ~$225–$250/mo lease (SourceForge $225 and ITQlick $250 differ), additional application $2,495 / ~$105/mo, maintenance $1,250/yr after year 1.</div>
+    </div>
+
+    <div class="card">
+      <h3>ProEst · CostOS</h3><div class="vendor">GENERAL CONSTRUCTION · CAPITAL PROJECTS</div>
+      <div class="pills"><span class="pill off">Piping</span><span class="pill off">Vessels</span><span class="pill off">Exchangers</span><span class="pill off">Structural</span><span class="pill off">Tanks</span></div>
+      <p><b>ProEst:</b> general construction — bid management, proposals, integrations (Procore, QuickBooks, Buildertrend, CMiC). <b>CostOS:</b> capital-project estimating from conceptual cost plans to detailed bids, with 2D/3D BIM and GIS takeoffs, multi-user collaboration, ERP integration (Oracle, SAP, Dynamics), benchmarking (CosMO), CO₂ calculations, AI-assisted estimating.</p>
+      <p>CostOS can estimate oil &amp; gas <b>projects</b>, but it is not a fabrication-shop tool — no piping/vessel/exchanger/structural/tank fabrication costing.</p>
+      <div class="vs"><span class="lab">Price</span><br>ProEst: third-party-reported from $5,000/yr unlimited-user subscription, mostly custom-quoted. CostOS: vendor is “custom pricing based on organization size and estimating needs”; GetApp/SelectHub list $2,800/user one-time — <b>conflicting, not reconciled</b>.</div>
+    </div>
+
+    <div class="card">
+      <h3>PipeFitter / Weld Estimator apps</h3><div class="vendor">NOT REALLY COMPETITORS</div>
+      <div class="pills"><span class="pill off">All five</span></div>
+      <p>Pipefitter apps are field layout calculators — offsets, takeouts, cut lengths, flange alignment. Weld estimators (FIRGELLI, Let'sFab, Varyos Weld) compute weld-metal weight/cost for <b>one joint</b> from geometry × deposition rate × efficiency.</p>
+      <p>They estimate one weld, not one job — so they are not comparable products.</p>
+      <div class="vs"><span class="lab">Price</span><br>Free to ~$2.99/mo or $19.99/yr (Varyos Weld, “launching soon”).</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 5. ENTERPRISE FOUR ============ -->
+<section id="enterprise">
+  <div class="sec-head"><span class="n">05</span><h2>The enterprise four</h2></div>
+  <p class="sec-sub">Four enterprise estimating platforms that come up in the same searches — verified 2026-11-06 against public vendor pages. They serve EPC and capital projects, a different job from fabrication-shop quoting.</p>
+  <div class="cards">
+    <div class="card">
+      <h3>Cleopatra Enterprise</h3><div class="vendor">ENTERPRISE CAPEX · PROJECT CONTROLS</div>
+      <p>Enterprise CAPEX plus shutdown/turnaround cost engineering and project controls. Its Weld Management module is NDE/WPS tracking and QA — not per-operation costing.</p>
+      <div class="vs"><span class="lab">Price</span><br>Quote-based pricing — expensive for small and medium shops.</div>
+    </div>
+    <div class="card">
+      <h3>Aspen Capital Cost Estimator (ACCE)</h3><div class="vendor">ASPENTECH · EPC TOTAL INSTALLED COST</div>
+      <p>Estimates EPC Total Installed Cost from Icarus design models. It does include shop and field fabrication hours — but as part of installed cost, not as shop quoting.</p>
+    </div>
+    <div class="card">
+      <h3>CostOS</h3><div class="vendor">NOMITECH · ENTERPRISE ESTIMATING</div>
+      <p>Enterprise estimating whose strength is 2D/3D BIM/GIS takeoff plus a parametric engine. No fabrication-shop costing.</p>
+      <div class="vs"><span class="lab">Price</span><br>Vendor: custom pricing (see the table above for the conflicting third-party listing).</div>
+    </div>
+    <div class="card">
+      <h3>InEight Estimate</h3><div class="vendor">CONSTRUCTION ESTIMATING</div>
+      <p>Construction estimating with historical benchmarking, quote management, and model-based takeoff.</p>
+      <div class="vs"><span class="lab">Price</span><br>Quote-based pricing.</div>
+    </div>
+  </div>
+  <div class="open" style="margin-top:14px">
+    <h3>Where Quotestimate stands against this group</h3>
+    <ul>
+      <li><b>Built for small and medium fabrication shops only — not EPC CAPEX.</b> Quotestimate prices shop operations on a bill of materials; the enterprise four price capital projects.</li>
+      <li><b>No drawing/BIM takeoff.</b> CostOS and InEight win there — Quotestimate starts from the BOM, not from drawings or models.</li>
+      <li><b>API integration is partial.</b> ERP export via CSV/JSON, QuickBooks Online sync, and a standby Autodesk Platform Services connector — but no public REST API.</li>
+      <li><b>Cloud backup is partial.</b> Storage is local; there is no full cloud backup/restore.</li>
+      <li><b>Newness risk is real.</b> Quotestimate is a new product from a single developer — see the vendor-longevity gap in the verdict below.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 6. VERDICT ============ -->
+<section id="verdict">
+  <div class="sec-head"><span class="n">06</span><h2>Verdict: where it is stronger, where it is weaker</h2></div>
+  <div class="vs-grid">
+    <div class="vs-box win">
+      <h3>Where Quotestimate is stronger</h3>
+      <ol>
+        <li><b>Scope breadth.</b> It is the only one that covers all five in one estimate, one engine. A shop bidding a pipe rack + vessel + exchanger + tank package does not need four tools or four reconciliations.</li>
+        <li><b>Costing depth.</b> It is the only one that prices PWHT (stages + thermocouples + furnace vs. local), NDE by type with coverage %, hydrotest/pneumatic hours, Charpy/hardness, NACE sour service, welder efficiency, joint prep vs. fit-up, purge gas, and shop-vs-field productivity — the items that make two same-weight spools differ by 3×. The closest vessel rival (COSTER) is $/lb.</li>
+        <li><b>Shop-to-site structural.</b> Erection (self or sub), decking, anchor bolts, fireproofing, misc metals, detailing, inspection and site prep in one quote — no structural tool evidences these as priced estimate lines.</li>
+        <li><b>Built-in API 650 tank calculator</b> — no separate tank software needed.</li>
+        <li><b>Transparency and price.</b> Published $129/$159, per-seat licences that can link into one Company Group, 30-day trial, your data stays local, and exports survive even if the subscription lapses. Almost everything else is quote-on-request or a third-party guess.</li>
+        <li><b>Estimate discipline.</b> AACE 18R-97 class-tied contingency, printed accuracy range, estimate-vs-actual BI per operation, subcontractor bid comparison, material price history, stale-rate warnings.</li>
+      </ol>
+    </div>
+    <div class="vs-box lose">
+      <h3>Where Quotestimate is weaker — honest gaps</h3>
+      <ol>
+        <li><b>Production control and inventory — now included.</b> Quotestimate tracks each job from Not Started to In Progress to Done, deducts material usage from Inventory automatically when a job starts, and keeps a running in/out log with live balances per material. What it still does not do: capacity planning by department/shift, shop-floor barcode tracking, or shipping — Tekla PowerFab and STRUMIS still lead there.</li>
+        <li><b>No native detailing / BIM authoring.</b> Tekla has Structures; ESTmep has CADmep; STRUMIS/FabTrol import from detailers. Quotestimate imports BOMs and has a standby APS connector, but it does not detail. Detailing in Quotestimate is <i>costed</i>, not <i>performed</i>.</li>
+        <li><b>CNC: costing + DXF export — yes. Direct machine control / G-code — no.</b> Quotestimate has CNC costing: CNC Milling with 2/3/4/5-axis rates, CNC Drill, and CNC beam-line drilling/punching — plus Export for Plate Nesting (DXF), Import Nesting Results, and a Nesting Report. What it does not do is control the machine directly or send G-code: the user loads the DXF into CAM/the machine. STRUMIS (StruCNC), ESTmep/CAMduct and Tekla drive machines themselves.</li>
+        <li><b>Multi-user — now included (Company Multi User).</b> Licences link into one Company Group: see who is online, edit different lines at the same time, and the Master controls rates and finalisation. Each person still has their own paid licence. What it still is not: a central multi-user database with capacity planning like Tekla/STRUMIS — one company only, and estimates still live on each machine.</li>
+        <li><b>No code design.</b> COMPRESS / PV Elite (Hexagon) design vessels and exchangers to code; Quotestimate costs a design made by others.</li>
+        <li><b>Vendor longevity.</b> New launch, small vendor — its own site FAQ says an installed copy on an unrenewed licence does not have the “same long-term backing as buying from an established vendor”. Trimble, AVEVA, Autodesk and Nomitech are established enterprises; FabTrol is the example of what happens when a niche vendor is absorbed and sunset.</li>
+        <li><b>Thinner content library for MEP.</b> For pure commercial HVAC/plumbing/duct, the manufacturer/price content of QuoteSoft, AutoBid, ESTmep and FastPIPE/FastDUCT (TRA-SER, Harrison, 100k+ items) is deeper than Quotestimate's Line 02 SMACNA offering.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="verdict" style="margin-top:16px">
+    <div>
+      <h2>Bottom line</h2>
+      <p>If the job is to <b>bid</b> code fabrication work across piping, vessels, exchangers, structural and tanks — especially sour service, PWHT/NDE-heavy, or shop-to-site structural — Quotestimate is the most complete and most transparent estimator on this list.</p>
+    </div>
+    <div>
+      <p style="font-size:15px">If the job is to <b>run</b> a structural steel plant, or to <b>design</b> vessels to code, pair it with — or choose instead — <b>Tekla / STRUMIS</b> for production control and <b>COMPRESS</b> for design. They are complements, not substitutes, for what Quotestimate does.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. OPEN QUESTIONS ============ -->
+<section id="open">
+  <div class="sec-head"><span class="n">07</span><h2>Could not be verified</h2></div>
+  <div class="open">
+    <h3>Open questions — these were not turned into facts</h3>
+    <ul>
+      <li><b>Prices for Tekla PowerFab, STRUMIS, FabTrol, QuoteSoft, ESTmep and COMPRESS:</b> no vendor-published price was found. The numbers on this page are third-party-reported and labelled that way.</li>
+      <li><b>Whether Tekla PowerFab or STRUMIS price erection / decking / fireproofing:</b> not evidenced in the vendor documentation found. Absence here is “not evidenced”, not proven absence.</li>
+      <li><b>FabTrol discontinued status:</b> rests on one competitor's page (EZIIL) plus a Trimble migration webinar; no AVEVA end-of-life notice was confirmed in the sources found.</li>
+      <li><b>CostOS pricing:</b> the vendor's “custom pricing” cannot be reconciled against the third-party “$2,800/user one-time”.</li>
+      <li><b>FastEST lease price:</b> listings differ — $225 vs. $250/month for the first application — so a range is reported.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 8. SOURCES ============ -->
+<section id="sources">
+  <div class="sec-head"><span class="n">08</span><h2>Sources</h2></div>
+  <ul class="sources">
+    <li>Quotestimate (verified live 2026-11-14) — <a href="https://www.quotestimate.com/">https://www.quotestimate.com/</a></li>
+    <li>Tekla PowerFab (vendor) — <a href="https://www.tekla.com/uk/products/tekla-powerfab">https://www.tekla.com/uk/products/tekla-powerfab</a> · <a href="https://support.tekla.com/doc/tekla-powerfab/2025/start_start_using">https://support.tekla.com/doc/tekla-powerfab/2025/start_start_using</a> · <a href="https://support.tekla.com/tekla-powerfab-suite">https://support.tekla.com/tekla-powerfab-suite</a> · <a href="https://support.tekla.com/fi/doc/tekla-powerfab/2025/est_labor_standards_maintenance">https://support.tekla.com/fi/doc/tekla-powerfab/2025/est_labor_standards_maintenance</a> · <a href="https://www.trimble.com/de-DE/products/tekla/powerfab">https://www.trimble.com/de-DE/products/tekla/powerfab</a></li>
+    <li>Tekla PowerFab pricing (third-party) — <a href="https://softwarefinder.com/manufacturing-software/tekla-powerfab">https://softwarefinder.com/manufacturing-software/tekla-powerfab</a> · <a href="https://buildingpoint.co.nz/tekla-more-than-structural-steel/">https://buildingpoint.co.nz/tekla-more-than-structural-steel/</a></li>
+    <li>STRUMIS (vendor) — <a href="https://strumis.com/steel-fabrication-management-software-enquiries-estimating-module">https://strumis.com/steel-fabrication-management-software-enquiries-estimating-module</a> · pricing (competitor-sourced) — <a href="https://eziil.com/strumis-vs-eziil-for-small-steel-fabricators/">https://eziil.com/strumis-vs-eziil-for-small-steel-fabricators/</a></li>
+    <li>FabTrol — <a href="https://www.automation.com/article/aveva-acquires-fabtrol-systems">https://www.automation.com/article/aveva-acquires-fabtrol-systems</a> · <a href="https://www.maritimeprofessional.com/amp/news/aveva-acquire-fabtrol-systems-272119">https://www.maritimeprofessional.com/amp/news/aveva-acquire-fabtrol-systems-272119</a> · <a href="https://eziil.com/fabtrol-mrp-status/">https://eziil.com/fabtrol-mrp-status/</a> · <a href="http://peer.asee.org/4694.pdf">http://peer.asee.org/4694.pdf</a> · <a href="https://cloud.aisc.org/msc/archive/2004/2004v08.pdf">https://cloud.aisc.org/msc/archive/2004/2004v08.pdf</a></li>
+    <li>ProEst (third-party) — <a href="https://softwarefinder.com/construction/proest-estimating-software">https://softwarefinder.com/construction/proest-estimating-software</a> · <a href="https://www.selecthub.com/construction-estimating-software/proest-vs-heavybid/">https://www.selecthub.com/construction-estimating-software/proest-vs-heavybid/</a></li>
+    <li>QuoteSoft / Trimble — <a href="https://sourceforge.net/software/compare/QuoteSoft-vs-Trimble-Quest/">https://sourceforge.net/software/compare/QuoteSoft-vs-Trimble-Quest/</a> · <a href="https://www.constructionplacements.com/best-mep-estimating-software/">https://www.constructionplacements.com/best-mep-estimating-software/</a> · <a href="https://sourceforge.net/software/product/AutoBid-Mechanical/">https://sourceforge.net/software/product/AutoBid-Mechanical/</a></li>
+    <li>CostOS — <a href="http://www.nomitech.com/costos">http://www.nomitech.com/costos</a> · <a href="https://www.nomitech.com/cost-estimating/best-cost-estimating-software-2026">https://www.nomitech.com/cost-estimating/best-cost-estimating-software-2026</a> · <a href="https://www.getapp.ca/software/119755/costos">https://www.getapp.ca/software/119755/costos</a></li>
+    <li>ESTmep — <a href="https://help.autodesk.com/cloudhelp/ENU/Fabrication-UsersGuide/files/GUID-F5293EC6-9334-4774-8BE9-A75FA2FBF7B9.htm">https://help.autodesk.com/cloudhelp/ENU/Fabrication-UsersGuide/files/GUID-F5293EC6-9334-4774-8BE9-A75FA2FBF7B9.htm</a> · <a href="https://construbim.com/bim-software-mep.html">https://construbim.com/bim-software-mep.html</a></li>
+    <li>FastEST — <a href="https://www.itqlick.com/fastpipe-fastduct/pricing">https://www.itqlick.com/fastpipe-fastduct/pricing</a> · <a href="https://sourceforge.net/software/compare/FastEST-Estimating-Software-vs-Shark-Byte-CRM-vs-WEX-Field-Service-Management-vs-WenPipe/">https://sourceforge.net/software/compare/FastEST-Estimating-Software-vs-Shark-Byte-CRM-vs-WEX-Field-Service-Management-vs-WenPipe/</a></li>
+    <li>COMPRESS + COSTER — <a href="https://www.codeware.com/products/compress/?msclkid=14da3c3ed4fe1ef2b1e059cc8b348fc8">https://www.codeware.com/products/compress/?msclkid=14da3c3ed4fe1ef2b1e059cc8b348fc8</a> · <a href="https://www.codeware.com/docs/COSTER-Report.pdf">https://www.codeware.com/docs/COSTER-Report.pdf</a></li>
+    <li>Small tools — <a href="https://play.google.com/store/apps/details?id=com.pipe.fittings.kevin&hl=en&gl=us">https://play.google.com/store/apps/details?id=com.pipe.fittings.kevin&amp;hl=en&amp;gl=us</a> · <a href="https://www.firgelliauto.com/blogs/engineering-calculators/welding-cost-estimator-calculator">https://www.firgelliauto.com/blogs/engineering-calculators/welding-cost-estimator-calculator</a> · <a href="https://letsfab.in/welding-weight-and-cost-calculator/">https://letsfab.in/welding-weight-and-cost-calculator/</a> · <a href="https://www.varyosweld.com/">https://www.varyosweld.com/</a></li>
+  </ul>
+</section>
+
+<footer>
+  Comparison based on public vendor pages and third-party listings, verified on 2026-11-14.<br>
+  Competitor prices were gathered on 2026-10-18. Prices not published by the vendor are labelled third-party-reported or competitor-sourced — they are not vendor-confirmed.
+</footer>
+
+</div>
+</body>
+</html>
