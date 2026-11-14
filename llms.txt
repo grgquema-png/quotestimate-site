@@ -1,0 +1,47 @@
+# Quotestimate
+
+> Cost & estimate software for small and medium fabrication shops.
+> Operation-by-operation estimating for ASME B31.3 piping, ASME Sec. VIII Div. 1
+> pressure vessels, TEMA heat exchangers, AISC structural steel, and API 650 oil
+> storage tanks. Windows desktop app. Free 30-day trial.
+
+## What it is
+
+- Quotestimate is cost estimating software built for fabrication shops, not
+  enterprise cost engineering. It prices a job operation by operation
+  (cutting, fit-up, welding, PWHT, NDE, hydrotest, painting, erection) from a
+  bill of materials (BOM / MTO).
+- It imports a BOM from CSV/Excel and from PDF BOM tables, and maps materials
+  to shop rates the user sets themselves. Default rates are starting
+  benchmarks only; each shop calibrates with its own rates.
+- It covers piping (ASME B31.3), pressure vessels (ASME Sec. VIII Div. 1),
+  heat exchangers (TEMA), structural steel (AISC), and oil storage tanks
+  (API 650), plus plate rolling and head forming (dishing).
+- It includes QuickBooks Online sync, PO generation, job tracking,
+  estimate-vs-actual comparison, and Company Multi User team estimating
+  (per-seat licences, one Master controls rates and finalisation).
+- It is a Windows desktop application. It is not an ERP, not a CAD/design
+  tool, and not a cloud-only service.
+
+## Who it is for
+
+- Small and medium fabrication shops in the United States, Canada,
+  Australia, and the Middle East that build pressure vessels, piping,
+  heat exchangers, structural steel, and storage tanks.
+- It is not built for enterprise cost engineering departments.
+
+## Pricing
+
+- $129 per user per month on annual billing, or $159 per user per month
+  billed monthly. 30-day free trial. No free tier.
+
+## Links
+
+- [Quotestimate homepage](https://www.quotestimate.com/)
+- [Download / free trial](https://www.quotestimate.com/download)
+
+## Optional
+
+- The software's default cost rates are basic benchmarks. Shops should
+  replace them with their own supplier quotes and shop history.
+- All dimensions in the software are imperial (inches, feet, pounds).
