@@ -11,6 +11,13 @@
   enterprise cost engineering. It prices a job operation by operation
   (cutting, fit-up, welding, PWHT, NDE, hydrotest, painting, erection) from a
   bill of materials (BOM / MTO).
+- It absorbs BOMs as they come: CSV/Excel files in metric units (mm, cm, kg)
+  and pipe sized by DN (DN6 to DN600) are standardized to imperial on load,
+  with missing DN pipe weights filled from a built-in ANSI/ASME B36.10 pipe
+  schedule table (every size and schedule in the standard chart). Client
+  descriptions are never rewritten, and weights supplied in the file are
+  never overwritten.
+
 - It imports a BOM from CSV/Excel and from PDF BOM tables, and maps materials
   to shop rates the user sets themselves. Default rates are starting
   benchmarks only; each shop calibrates with its own rates.
@@ -50,4 +57,6 @@
 
 - The software's default cost rates are basic benchmarks. Shops should
   replace them with their own supplier quotes and shop history.
-- All dimensions in the software are imperial (inches, feet, pounds).
+- The estimate screen and manual entry are imperial (inches, feet, pounds),
+  with metric shown alongside; imported files may be metric and are
+  standardized on load (see above).
