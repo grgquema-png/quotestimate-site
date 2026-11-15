@@ -20,6 +20,11 @@
 - It includes QuickBooks Online sync, PO generation, job tracking,
   estimate-vs-actual comparison, and Company Multi User team estimating
   (per-seat licences, one Master controls rates and finalisation).
+- It includes receiving and shipping support: MTR (mill test report)
+  heat-number traceability recorded per material lot at receiving, with an
+  exportable trace dossier per job, and a shipping manifest generated from
+  the job's BOM with item weights and totals. Both are optional and never
+  change the estimate.
 - It is a Windows desktop application. It is not an ERP, not a CAD/design
   tool, and not a cloud-only service.
 
