@@ -14,9 +14,14 @@
 - It absorbs BOMs as they come: CSV/Excel files in metric units (mm, cm, kg)
   and pipe sized by DN (DN6 to DN600) are standardized to imperial on load,
   with missing DN pipe weights filled from a built-in ANSI/ASME B36.10 pipe
-  schedule table (every size and schedule in the standard chart). Client
-  descriptions are never rewritten, and weights supplied in the file are
-  never overwritten.
+  schedule table (every size and schedule in the standard chart). Flange
+  weights are filled from built-in ASME B16.5 and ASME B16.47 tables when
+  blank, and every loaded BOM is checked against the three standards:
+  combinations the standards do not list, and weights outside a +/-5% band
+  of the table value, are flagged in an import checks report; a large
+  flange whose ASME B16.47 series (A or B) is not stated is flagged rather
+  than guessed. Client descriptions are never rewritten, and weights
+  supplied in the file are never overwritten.
 
 - It imports a BOM from CSV/Excel and from PDF BOM tables, and maps materials
   to shop rates the user sets themselves. Default rates are starting

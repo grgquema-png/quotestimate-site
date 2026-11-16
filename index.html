@@ -654,7 +654,7 @@
 
 <section id="metric-dn" style="background:#fff;border-top:1px solid #E3DED2;border-bottom:1px solid #E3DED2;">
   <div class="wrap">
-    <div class="sec-label">New in v1.0.15 — Pipe Weights per ASME B36.10</div>
+    <div class="sec-label">New in v1.0.17 — Standard Weights per ASME B36.10, B16.5 and B16.47</div>
     <h2 class="sec-h">Imperial or metric, NPS or DN — the BOM loads as it comes.</h2>
     <p class="sec-sub">Clients send BOMs the way their own systems print them. Quotestimate standardizes every file as it loads, so the estimate starts from the client’s numbers — not from an hour of reformatting.</p>
     <div class="cap-grid">
@@ -670,6 +670,13 @@
         <ul>
           <li>Pipe sized by DN (DN6 to DN600) is recognized on load, and missing weights are filled from the built-in ANSI/ASME B36.10 pipe schedule table — every size and schedule in the standard chart, XH and XXH included.</li>
           <li>A DN pipe line never prices as weightless just because the client’s drawing was metric.</li>
+        </ul>
+      </div>
+      <div class="cap-group">
+        <h3>Flanges, Checked Against the Standard</h3>
+        <ul>
+          <li>Flange weights are filled from the built-in ASME B16.5 and ASME B16.47 tables when a client file leaves them blank — on every load, CSV, Excel and PDF alike.</li>
+          <li>Combinations the standards do not list — a Class 450 flange, a pipe size or schedule outside ASME B36.10 — are flagged in the BOM Import Checks report, and so is any weight that falls outside the standard weight for the size and class. A large flange whose Series A or B is not stated is flagged, never guessed.</li>
         </ul>
       </div>
       <div class="cap-group">
