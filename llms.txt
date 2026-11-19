@@ -45,8 +45,15 @@
   exportable trace dossier per job, and a shipping manifest generated from
   the job's BOM with item weights and totals. Both are optional and never
   change the estimate.
-- It is a Windows desktop application. It is not an ERP, not a CAD/design
-  tool, and not a cloud-only service.
+- It prices fabrication built to the ASME codes. The design office
+  completes the code calculations first; Quotestimate takes over from
+  the finished design — drawings, BOM, and the code materials the job
+  calls for, such as SA-516-70N plate, SA-333 Gr. 6 low-temperature
+  pipe, and SA-350 LF2 flanges — and prices each operation the shop
+  performs. PWHT, NDE, hydrotest, and weld requirements from ASME
+  B31.3 and Sec. VIII Div. 1 are carried into the cost line by line.
+- It is a Windows desktop application dedicated to cost estimating,
+  a focused tool that works alongside the shop's ERP and CAD systems.
 
 ## Who it is for
 
