@@ -26,6 +26,14 @@
 - It imports a BOM from CSV/Excel and from PDF BOM tables, and maps materials
   to shop rates the user sets themselves. Default rates are starting
   benchmarks only; each shop calibrates with its own rates.
+- New in v1.0.19: Quotestimate is the first fabrication estimating software
+  that reads the parts list directly from DWG and DXF drawing files - no
+  tracing, no counting clicks, no retyping. The Import DWG/DXF button reads
+  the BOM table inside the CAD file itself, including AutoCAD Plant 3D and
+  CADWorx parts lists, and loads it through the same standardization and
+  standards checks as every other import. DXF files are read natively; DWG
+  files are converted with the free ODA File Converter. PDF and OCR import
+  remain available.
 - It covers piping (ASME B31.3), pressure vessels (ASME Sec. VIII Div. 1),
   heat exchangers (TEMA), structural steel (AISC), and oil storage tanks
   (API 650), plus plate rolling and head forming (dishing).
