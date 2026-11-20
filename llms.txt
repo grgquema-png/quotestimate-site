@@ -67,7 +67,7 @@
 - Small and medium fabrication shops in the United States, Canada,
   Australia, and the Middle East that build pressure vessels, piping,
   heat exchangers, structural steel, and storage tanks.
-- Engineering firms use Quotestimate for the fabrication scope of a bid: once their design produces a BOM, they price the vessels, piping, exchangers, and structural steel operation by operation, with the AACE 18R-97 Estimate Class selector (Class 5 to Class 1) setting the contingency and the accuracy range printed on the quote. Heavy AutoCAD users start from the parts list inside their own DWG files, and the same estimate gives the overall cost of the job — materials, fabrication, machining, field installation, and site work — as one total bid price, ready right after the design and code analysis.
+- Engineering firms form a second market: after the design and code analysis, a firm reads the overall cost of the project from the same estimate — materials, fabrication, machining, field installation, and site work as one total bid price. Heavy AutoCAD users start from the parts list inside their own DWG files; once the design produces a BOM, the firm prices the vessels, piping, exchangers, and structural steel operation by operation, with the AACE 18R-97 Estimate Class selector (Class 5 to Class 1) setting the contingency and the accuracy range printed on the quote.
 - It is not built for enterprise cost engineering departments.
 
 ## Pricing
