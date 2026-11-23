@@ -46,7 +46,7 @@
   (API 650), plus plate rolling and head forming (dishing).
 - It includes QuickBooks Online sync, PO generation, job tracking,
   estimate-vs-actual comparison, and Company Multi User team estimating
-  (per-seat licences, one Master controls rates and finalisation).
+  (per-seat licences, one Master controls rates and finalisation). ERP file exchange (Export to ERP, Import ERP Pricing) serves shops running their own ERP.
 - It includes receiving and shipping support: MTR (mill test report)
   heat-number traceability recorded per material lot at receiving, with an
   exportable trace dossier per job, and a shipping manifest generated from
